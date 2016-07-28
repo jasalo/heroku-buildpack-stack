@@ -45,6 +45,7 @@ fi
 
 if [ ! "$(which stack-run)" ]; then
     echo "-----> TESTING /////////////////////// stack-run"
+    echo $(which stack-run)
     echo "BEGIN grep result:"
     echo $(grep executable *.cabal)
     echo $(grep executable *.cabal | head -n1 | awk '{print $2}')
