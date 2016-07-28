@@ -60,6 +60,8 @@ cd "$build"
 
 echo "-----> I'm in:"
 echo $(pwd)
+echo $build
+echo $cache
 
 echo '-----> Setting up stack'
 stack setup |& indent
