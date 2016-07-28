@@ -44,24 +44,28 @@ if [ ! "$(which stack)" ]; then
 fi
 
 if [ ! "$(which stack-run)" ]; then
-    echo '-----> Installing stack-run'
+    echo "-----> TESTING /////////////////////// stack-run"
+    echo "BEGIN grep result:"
+    echo $(grep executable *.cabal)
+    echo $(grep executable *.cabal | head -n1 | awk '{print $2}')
+    echo "END grep result"
     cat << 'EOF' > "$bin/stack-run"
 #!/bin/bash
-$(grep ^executable *.cabal | head -n1 | awk '{print $2}')
+$(grep executable *.cabal | head -n1 | awk '{print $2}')
 EOF
     chmod +x "$bin/stack-run"
     echo "-----> Gave Execution Permissions to stack-run"
+    echo "< ---------------- PRINTING STACK-RUN ----------------- >"
+    echo $(cat $bin/stack-run)
 fi
-echo "----------- PRINTING STACK-RUN -----------"
-echo $(cat $bin/stack-run)
 
 export HOME="$cache"
 cd "$build"
 
-echo "-----> I'm in:"
-echo $(pwd)
-echo $build
-echo $cache
+# echo "-----> I'm in:"
+# echo $(pwd)
+# echo $build
+# echo $cache
 
 echo '-----> Setting up stack'
 stack setup |& indent
